@@ -11,7 +11,7 @@ To do that just use need to open the IP of you tasmota device in your browser, t
 - If you have a tasmota plug already configured: connect your smartplug and go to Configuration> Backup Configuration (it will backup the most important pin configuration and probably the wifi 
 
 ## Building a custom tasmota firmware that supports scripting 
-You can use the tasmota_9.5.0.0.8.bin.gz that is provided in this repository or you can build your own custom tasmota by following these step:
+You can use the `tasmota_custom_userconfig_already_edited.bin.gz` that is provided in this repository or you can build the same custom tasmota by following these step:
 
 - Install VSCode (Visual Studio Code)[https://code.visualstudio.com/] and the extension (PlatformIO)[https://platformio.org/] via the extension menu inside VScode.
 - Go to https://github.com/arendst/Tasmota , click on `Code` then `Download ZIP` and extract the zip (mine was extracted in the folder in the "Tasmota-development")
