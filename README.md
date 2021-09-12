@@ -165,6 +165,7 @@ esptool.py --port COM3 write_flash -fs 1MB -fm dout 0x0 firmware.bin
 ## A simple DIY PM filter:
 Just a hepa filter on a fan! Yes it works, even if there is air from the fan coming around the filter!
 
+![image](https://user-images.githubusercontent.com/15843700/132995672-2985cf44-918e-4db1-b9ed-494c5e20089f.png)
 
 
 
