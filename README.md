@@ -168,8 +168,10 @@ Just a hepa filter on a fan! Yes it works, even if there is air from the fan com
 
 ![image](https://user-images.githubusercontent.com/15843700/132995672-2985cf44-918e-4db1-b9ed-494c5e20089f.png)
 
-
-
+This design has been tested by Thomas Talhelm "a non-expert nerd who has dedicated years to understanding how to live under Beijing’s particulate cloud":  
+https://smartairfilters.com/en/blog/what-is-the-best-air-purifier-on-the-market-today/  
+https://smartairfilters.com/en/blog/diy-air-outlet-tests/  
+https://smartairfilters.com/en/blog/comparison-diy-filter-effectiveness-iq-air/  
 
 
 
