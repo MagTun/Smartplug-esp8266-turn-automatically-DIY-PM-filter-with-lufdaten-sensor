@@ -126,7 +126,7 @@ endif
 
 ``` 
 
-- Now fo to consoles>console and write : script 1 
+- Now fo to consoles>console and write : `script 1`   (and then press Enter)
 - Everything should be working now! 
 
 ## Advices :
