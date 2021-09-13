@@ -1,7 +1,7 @@
 # Turn automatically a PM filter with a smartplug (esp8266) based on the Lufdaten sensor data
 
 ## What you need 
-- a smart plug with tasmota already installed or plug with an esp8266 (if you also managed to "brick" it go to the section "how to unbrick it?')
+- a smart plug with tasmota already installed (you can find a list of plug with plug preinstalled with tasmota [here](https://templates.blakadder.com/plug.html)) or plug with an esp8266 (if you also managed to "brick" it go to the section "how to unbrick it?')
 
 ## Basic/general info about tasmota
 With tasmota you can directly send a command and save/edit a script from a web interface (you don't need to build + upload the bin file to change your code). It takes ≈7seconds for the plug to save the script and restart.
@@ -11,9 +11,9 @@ To do that just use need to open the IP of you tasmota device in your browser, t
 - If you have a tasmota plug already configured: connect your smartplug and go to Configuration> Backup Configuration (it will backup the most important pin configuration and probably the wifi 
 
 ## Building a custom tasmota firmware that supports scripting 
-You can use the `tasmota_custom.bin.gz` that is provided in this repository or you can build the same custom tasmota by following these step:
+You can use the `tasmota_custom.bin.gz` (based on 9.5.0.8) that is provided in this repository or you can build the same custom tasmota by following these step:
 
-- Install VSCode (Visual Studio Code)[https://code.visualstudio.com/] and the extension (PlatformIO)[https://platformio.org/] via the extension menu inside VScode.
+- Install VSCode [Visual Studio Code](https://code.visualstudio.com/) and the extension [PlatformIO](https://platformio.org/) via the extension menu inside VScode.
 - Go to https://github.com/arendst/Tasmota , click on `Code` then `Download ZIP` and extract the zip (mine was extracted in the folder in the "Tasmota-development")
 - In VSCode, open the command palette and select `PlatformIO : Home`
 - On the PlatformIO home page, click on `Open project`, select your folder (eg: Tasmota-development). If VSCode aks if you trust the authors, click `Yes`
@@ -130,8 +130,9 @@ endif
 - Everything should be working now! 
 
 ## Advices :
-- if you have any problem (ex: during the build, or function not working properly): update tasmota : they regularly fix the bugs (twice in a week, I solved error message simply by updating the tasmota to the latest)
-- always use .bin.gz
+- if you have any problem (ex: during the build or a function that doesn't work properly), update tasmota : they regularly fix the bugs (two times in a week, I solved errors by  simply updating the tasmota to the latest)
+- always upload the .bin.gz not the .bin
+
 
 
 
