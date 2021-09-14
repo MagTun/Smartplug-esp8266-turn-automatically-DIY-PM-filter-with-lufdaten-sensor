@@ -1,8 +1,11 @@
 # Turn automatically a PM filter with a smartplug (esp8266) based on the Lufdaten sensor data
 
 ## What you need 
-1) a smart plug with tasmota already installed (you can find a list of plug with plug preinstalled with tasmota [here](https://templates.blakadder.com/plug.html)) or plug with an esp8266 (if you also managed to "brick" it go to the section "how to unbrick it?')
-I bought mine on Aliexpress at 16€:  [ATHOM preflashed TASMOTA Smart Plug 16A](https://fr.aliexpress.com/item/4001230982267.html?spm=a2g0s.9042311.0.0.40696c375Omr8M) Smart 
+1) a smart plug with tasmota already installed (you can find a list of plug with plug preinstalled with tasmota [here](https://templates.blakadder.com/plug.html)) or any smart plug with an esp8266 or esp8285* (if you managed to "brick" the plug, go to the section "how to unbrick it?')
+I bought mine on Aliexpress at 16€:  [ATHOM preflashed TASMOTA Smart Plug 16A](https://fr.aliexpress.com/item/4001230982267.html?spm=a2g0s.9042311.0.0.40696c375Omr8M)     
+
+    *) EPS8285 is equivalent to an ESP8266 embedded with 1MB Flash memory, therefore, ESP8285 uses the same set of SDK as ESP8266's, namely ESP8266 SDK)
+
 
 2) Build your luftadaten sensor 
 (20$): https://sensor.community/en/
