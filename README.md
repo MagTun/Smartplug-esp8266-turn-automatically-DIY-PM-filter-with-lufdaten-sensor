@@ -1,7 +1,21 @@
 # Turn automatically a PM filter with a smartplug (esp8266) based on the Lufdaten sensor data
 
 ## What you need 
-- a smart plug with tasmota already installed (you can find a list of plug with plug preinstalled with tasmota [here](https://templates.blakadder.com/plug.html)) or plug with an esp8266 (if you also managed to "brick" it go to the section "how to unbrick it?')
+1) a smart plug with tasmota already installed (you can find a list of plug with plug preinstalled with tasmota [here](https://templates.blakadder.com/plug.html)) or plug with an esp8266 (if you also managed to "brick" it go to the section "how to unbrick it?')
+I bought mine on Aliexpress at 16€:  [ATHOM preflashed TASMOTA Smart Plug 16A](https://fr.aliexpress.com/item/4001230982267.html?spm=a2g0s.9042311.0.0.40696c375Omr8M) Smart 
+
+2) Build your luftadaten sensor 
+(20$): https://sensor.community/en/
+
+3) Build your air filter
+It's just a hepa filter on a fan! Yes it works, even if there is air from the fan passing around the filter! https://smartairfilters.com/en/blog/how-to-make-diy-air-purifier/ 
+
+![image](https://user-images.githubusercontent.com/15843700/132995672-2985cf44-918e-4db1-b9ed-494c5e20089f.png)
+
+This design has been tested by Thomas Talhelm "a non-expert nerd who has dedicated years to understanding how to live under Beijing’s particulate cloud":  
+https://smartairfilters.com/en/blog/what-is-the-best-air-purifier-on-the-market-today/  
+https://smartairfilters.com/en/blog/diy-air-outlet-tests/  
+https://smartairfilters.com/en/blog/comparison-diy-filter-effectiveness-iq-air/  
 
 ## Basic/general info about tasmota
 With tasmota you can directly send a command and save/edit a script from a web interface (you don't need to build + upload the bin file to change your code). It takes ≈7seconds for the plug to save the script and restart.
@@ -139,12 +153,12 @@ endif
 
 ## How to fix a bricked smart plug (by erasing it and reinstalling tasmota) or installing tasmota on a esp8266 plug
 
-● How to open the plug:
+■ How to open the plug:
 ○ best technique: https://www.youtube.com/watch?v=MjG07LQmJjQ 
 ○ interesting comments: https://www.youtube.com/watch?v=mG4bAAHluMU 
 
-● How to erase /reinstall tasmota
-- solder the wires (cf the picture + https://codesandbolts.com/bsd29-smart-socket-esp8285)
+■ How to erase /reinstall tasmota
+- solder the wires (cf the picture below from https://codesandbolts.com/bsd29-smart-socket-esp8285)
 - install esptool via python python -m pip install esptool
 - download tasmota.bin ota.tasmota.com/tasmota/release/
 - put esp8266 in programming mode (connect  gpio0 to ground, plug the usb-serial connector- wait 10sec, disconnect gpio to ground) 
@@ -157,21 +171,16 @@ esptool.py -p COM3 flash_id                  (should return several line similar
 esptool.py --port COM3 erase_flash
 esptool.py --port COM3 write_flash -fs 1MB -fm dout 0x0 firmware.bin
 
-● config the plug
+![image](https://user-images.githubusercontent.com/15843700/133206729-8d54ea10-94e3-4dc6-a42e-dd4b5e6ca138.png)
+others tuto:  
+https://community.octoprint.org/t/make-your-own-sonoff-smart-plug/13230  
+https://www.instructables.com/USB-to-Serial-Convertor-for-ESP8266/  
+
+■ Configurate the plug
 - connect the plug and enter wifi
 - re-enter the config specs for the plug : cf configuration> Restore config
 
 
-
-## A simple DIY PM filter:
-Just a hepa filter on a fan! Yes it works, even if there is air from the fan coming around the filter!
-
-![image](https://user-images.githubusercontent.com/15843700/132995672-2985cf44-918e-4db1-b9ed-494c5e20089f.png)
-
-This design has been tested by Thomas Talhelm "a non-expert nerd who has dedicated years to understanding how to live under Beijing’s particulate cloud":  
-https://smartairfilters.com/en/blog/what-is-the-best-air-purifier-on-the-market-today/  
-https://smartairfilters.com/en/blog/diy-air-outlet-tests/  
-https://smartairfilters.com/en/blog/comparison-diy-filter-effectiveness-iq-air/  
 
 
 
