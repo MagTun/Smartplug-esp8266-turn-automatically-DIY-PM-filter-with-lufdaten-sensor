@@ -146,6 +146,8 @@ endif
 - Now fo to consoles>console and write : `script 1`   (and then press Enter)
 - Everything should be working now! 
 
+Don't forget to plug your PM filter on the smartplug!
+
 ## Advices :
 - if you have any problem (ex: during the build or a function that doesn't work properly), update tasmota : they regularly fix the bugs (two times in a week, I solved errors by  simply updating the tasmota to the latest)
 - always upload the .bin.gz not the .bin
