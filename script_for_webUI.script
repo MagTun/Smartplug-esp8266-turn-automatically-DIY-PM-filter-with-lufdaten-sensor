@@ -1,14 +1,27 @@
 >D
-; declare var. for pm10 and pm25: a string var (to extract the json text), a number var (to convert the string into a num) and a threshold var (to easily change it)
+; + modify the IP address
+ipa="192.168.1.39:888"
+
+; + you can customized these variables: 
+; - PM25 and PM10 thresholds above which the PM filter is turn on (default : 5 and 16)
+pm10t=16
+pm25t=5
+
+; - delay between 2 PM measurements (should be the number set inside the Lufdaten sensor + about 5sec)
+delayd=150
+
+
+;    + + +  From here on, modify at your own risk! + + + 
+; declare var. for pm10 and pm25 and delay, we need: a string var (to extract the json text), a numb var (to convert the string into a num) and a reference var (already declared above)
 pm10=""
 pm10n=0
-; default 15
-pm10t=15
 
 pm25=""
 pm25n=0
-; default 5
-pm25t=5
+
+delays=""
+delayn=10
+
 
 ; declare var to make the http call 
 res=0
@@ -18,12 +31,13 @@ flg=0
 
 
 >S
-; make the call every x seconds (here it's 60)
-if upsecs%60==0
+; make the call every x seconds
+if upsecs%delayn==0
 then
+
 flg=1
 ; get contents to http page, and when ready call section
-res=http("192.168.1.39:888" "/data.json")
+res=http(ipa "/data.json")
 flg=0
 endif
 
@@ -31,21 +45,28 @@ endif
 
 if flg>0
 then
-; extract 4th/6th occurrence of text "value", eg.  ":"5.22"},{"
+; first extract all needed info from http 
+; - PMvalue 4th/6th occurrence of text "value", eg.  ":"5.22"},{"
+; - delay eg.    ":"42", "sensordata
 pm10=gwr("value" 4)
 pm25=gwr("value" 6)
+delays=gwr("age" 2)
 
 ; parse the result (remove  " and keep only numbers)
 pm10=st(pm10 " 2)
 print PM10  %pm10%
 pm25=st(pm25 " 2)
 print PM2.5  %pm25%
+delays=st(delays " 2)
+print delay %delays%
+
 
 ; convert string to number
 pm10n=pm10
 pm25n=pm25
+delayn=delays
 
-
+; check if the PM filter should be turn on/of
 if pm25n>pm25t
 then 
 print Turn ON bcs PM25 >  %pm25t%
@@ -59,12 +80,26 @@ print Turn ON bcs PM10 >  %pm10t%
 =>power1 1
 
 else 
-print PM25 and PM25 < threshold 
+print turn OFF bcs PM25 and PM25 < threshold 
 ; will switch off!
 =>power1 0
 ; endif pm10
 endif
 ;endif pm25
 endif
+
+
+
+; adjust the time to wait before next http call
+delayn=delayd-delayn
+if delayn==0
+then 
+delayn=60
+;print %delayn%
+endif
+print real delay %delayn%
+print before
+slp(10)
+print after
 ;endif flg
 endif
