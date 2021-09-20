@@ -158,23 +158,23 @@ Don't forget to plug your PM filter on the smartplug!
 
 ## How to fix a bricked smart plug (by erasing it and reinstalling tasmota) or installing tasmota on a esp8266 plug
 
-■ How to open the plug:
-○ best technique: https://www.youtube.com/watch?v=MjG07LQmJjQ 
-○ interesting comments: https://www.youtube.com/watch?v=mG4bAAHluMU 
+■ How to open the plug:  
+- best technique: https://www.youtube.com/watch?v=MjG07LQmJjQ   
+- interesting comments: https://www.youtube.com/watch?v=mG4bAAHluMU   
 
 ■ How to erase /reinstall tasmota
 - solder the wires (cf the picture below from https://codesandbolts.com/bsd29-smart-socket-esp8285)
-- install esptool via python python -m pip install esptool
-- download tasmota.bin ota.tasmota.com/tasmota/release/
-- put esp8266 in programming mode (connect  gpio0 to ground, plug the usb-serial connector- wait 10sec, disconnect gpio to ground) 
-when you are in pogramming mode the red light turn ON 
-when it uploads the orange light (in the middle) turns ON and the white light flash quickly (near the crystal clock of the board).
-- verify that esp8266 is in programming mode  (to get COM port : device manager > Ports (COM & LPT) . ) 
-esptool.py -p COM3 read_mac               (should return several line of info incl mac address)
-esptool.py -p COM3 flash_id                  (should return several line similar above)
-- erase flash an install tasmota 
-esptool.py --port COM3 erase_flash
-esptool.py --port COM3 write_flash -fs 1MB -fm dout 0x0 firmware.bin
+- install esptool via python `python -m pip install esptool`
+- download tasmota.bin on http://ota.tasmota.com/tasmota/release/
+- put esp8266 in programming mode (connect  gpio0 to ground, plug the usb-serial connector- wait 10sec, disconnect gpio to ground)   
+     - when you are in pogramming mode the red light turn ON   
+     - when it uploads the orange light (in the middle) turns ON and the white light flash quickly (near the crystal clock of the board).  
+- verify that esp8266 is in programming mode  (to get COM port : device manager > Ports (COM & LPT) . )   
+`esptool.py -p COM3 read_mac`               (should return several line of info incl mac address)  
+`esptool.py -p COM3 flash_id`                  (should return several line similar above)  
+- erase flash an install tasmota   
+`esptool.py --port COM3 erase_flash`  
+`esptool.py --port COM3 write_flash -fs 1MB -fm dout 0x0 firmware.bin`  
 
 ![image](https://user-images.githubusercontent.com/15843700/133206729-8d54ea10-94e3-4dc6-a42e-dd4b5e6ca138.png)
 others tuto:  
