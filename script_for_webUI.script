@@ -1,17 +1,25 @@
 >D
+; this srcipt wait for 2 measurements above either of the two high thresholds (pm10 and 2.5) before it starts the PM filter. 
+; It will keep the PM filter on until both of the PM value are under the low threshold. 
+
 ; + modify the IP address
 ipa="192.168.1.39:888"
 
 ; + you can customized these variables: 
-; - PM25 and PM10 thresholds above which the PM filter is turn on (default : 5 and 16)
-pm10t=16
-pm25t=5
+; - PM25 and PM10 thresholds above which the PM filter is turn on (default:10-5) 
+pm10ts=10
+pm25ts=5
 
+; - PM25 and PM10 thresholds below which the PM filter is turn off (default:5-2) 
+pm10te=7
+pm25te=2
 ; - delay between 2 PM measurements (should be the number set inside the Lufdaten sensor + about 5sec)
 delayd=150
 
 
 ;    + + +  From here on, modify at your own risk! + + + 
+
+powerstate=0
 ; declare var. for pm10 and pm25 and delay, we need: a string var (to extract the json text), a numb var (to convert the string into a num) and a reference var (already declared above)
 pm10=""
 pm10n=0
@@ -19,9 +27,8 @@ pm10n=0
 pm25=""
 pm25n=0
 
-delays=""
-delayn=10
-
+; start filtering only if at least the last 2 values were high: prevent starting filter for 1 off value/bug
+lastValueWasHigh=0
 
 ; declare var to make the http call 
 res=0
@@ -32,7 +39,7 @@ flg=0
 
 >S
 ; make the call every x seconds
-if upsecs%delayn==0
+if upsecs%delayd==0
 then
 
 flg=1
@@ -50,56 +57,63 @@ then
 ; - delay eg.    ":"42", "sensordata
 pm10=gwr("value" 4)
 pm25=gwr("value" 6)
-delays=gwr("age" 2)
 
 ; parse the result (remove  " and keep only numbers)
 pm10=st(pm10 " 2)
 print PM10  %pm10%
 pm25=st(pm25 " 2)
 print PM2.5  %pm25%
-delays=st(delays " 2)
-print delay %delays%
 
-
-; convert string to number
+; if no value extracted from json (ex: when luftdaten make a measure/bug), then keep old value, otherwise replace by new value as number
+if (pm25!="" or pm25!="[]}")
+then
+; convert new measure as string into number
 pm10n=pm10
 pm25n=pm25
-delayn=delays
+;endif to check if empty var
+endif
 
 ; check if the PM filter should be turn on/of
-if pm25n>pm25t
+powerstate=pwr[1]
+if powerstate==1.00
 then 
-print Turn ON bcs PM25 >  %pm25t%
-=>power1 1
 
-else 
-
-if pm10n>pm10t
-then 
-print Turn ON bcs PM10 >  %pm10t%
-=>power1 1
-
-else 
-print turn OFF bcs PM25 and PM25 < threshold 
-; will switch off!
+if (pm25n<pm25te and pm10n<pm10te)
+then
+lastValueWasHigh=0
+print Filter turned OFF
 =>power1 0
-; endif pm10
-endif
-;endif pm25
+else
+lastValueWasHigh=1
+print Filter still ON (at least the last 2 value were high) 
+; endif pmXXte
 endif
 
-
-
-; adjust the time to wait before next http call
-delayn=delayd-delayn
-if delayn==0
-then 
-delayn=60
-;print %delayn%
+else
+;if powerstate off
+if (pm25n>pm25ts or pm10n>pm10ts)  
+then
+if lastValueWasHigh==1 
+then
+print Filter turned ON (at least the last 2 value were high) 
+=>power1 1
+else 
+; if lastValueWasHigh==0
+lastValueWasHigh=1
+print last value is high for the first time
+; endif lastValueWasHigh
 endif
-print real delay %delayn%
-print before
-slp(10)
-print after
+
+else 
+; if poweroff and pm25n<pm25ts or pm10n<pm10ts
+lastValueWasHigh=0
+print Filter turned OFF
+=>power1 0
+;endif pm25/pm10
+endif
+
+;endif powerstate
+endif
+
 ;endif flg
 endif
