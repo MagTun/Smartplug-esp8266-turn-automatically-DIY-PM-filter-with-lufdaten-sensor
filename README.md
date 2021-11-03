@@ -34,7 +34,7 @@ You can use the `tasmota_custom.bin.gz` (based on 9.5.0.8) that is provided in t
 - Go to https://github.com/arendst/Tasmota , click on `Code` then `Download ZIP` and extract the zip (mine was extracted in the folder in the "Tasmota-development")
 - In VSCode, open the command palette and select `PlatformIO : Home`
 - On the PlatformIO home page, click on `Open project`, select your folder (eg: Tasmota-development). If VSCode aks if you trust the authors, click `Yes`
-- Then make a copy of the file `Tasmota-development\tasmota\user_config_override_sample.h` and rename the `copy user_config_override.h` 
+- Then make a copy of the file `Tasmota-development\tasmota\user_config_override_sample.h` and rename the copy `user_config_override.h` 
 - Open `user_config_override_sample.h`  inside VSCode and just before the very last `#endif` paste this:
 
 ```
