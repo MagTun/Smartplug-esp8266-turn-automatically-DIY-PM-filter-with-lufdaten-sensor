@@ -3,7 +3,7 @@
 ## In brief
 With this Tasmota, a smart plug will read the value from your Lufdaten sensor and will turn your filter on/off accroding to the threshold you set.    
 You can force your filter to be ON even if the PM values are low by pressing the button on your plug or the button "Force" in the UI.   
-TA huge thanks to @gemu2015 for the time spent for extracting the value from the json and creating the "force mode".  
+A huge thanks to @gemu2015 for the time spent for extracting the values from the json and creating the "force mode".  
 
 ## What you need 
 1) a smart plug with tasmota already installed (you can find a list of plug with plug preinstalled with tasmota [here](https://templates.blakadder.com/plug.html)) or any smart plug with an esp8266 or esp8285* (if you managed to "brick" the plug, go to the section "how to unbrick it?')
