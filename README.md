@@ -1,7 +1,7 @@
-# Turn automatically a PM filter with a smartplug (esp8266) based on the Lufdaten sensor data
+# Turn automatically a cheap DIY super efficient PM filter with a smartplug (esp8266) based on the Lufdaten sensor data
 
 ## In brief
-With this script, the plug will read the value from your Lufdaten sensor and will turn your filter on/off accroding to the threshold you set.    
+With this Tasmota, a smart plug will read the value from your Lufdaten sensor and will turn your filter on/off accroding to the threshold you set.    
 You can force your filter to be ON even if the PM values are low by pressing the button on your plug or the button "Force" in the UI.   
 TA huge thanks to @gemu2015 for the time spent for extracting the value from the json and creating the "force mode".  
 
