@@ -96,5 +96,7 @@ Examples :
 
 #define USE_WEBSEND_RESPONSE
 #define HTTP_DEBUG
+#define USE_SCRIPT_WEB_DISPLAY
+#define USE_BUTTON_EVENT
 
 #endif // _USER_CONFIG_OVERRIDE_H_
