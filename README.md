@@ -38,15 +38,17 @@ You can use the `tasmota_custom.bin.gz` (based on 9.5.0.8) that is provided in t
 - Open `user_config_override_sample.h`  inside VSCode and just before the very last `#endif` paste this:
 
 ```
-    #ifndef USE_SCRIPT
-    #define USE_SCRIPT
-    #endif
-    #ifdef USE_RULES
-    #undef USE_RULES
-    #endif
+#ifndef USE_SCRIPT
+#define USE_SCRIPT
+#endif
+#ifdef USE_RULES
+#undef USE_RULES
+#endif
 
-    #define USE_WEBSEND_RESPONSE
-    #define HTTP_DEBUG
+#define USE_WEBSEND_RESPONSE
+#define HTTP_DEBUG
+#define USE_SCRIPT_WEB_DISPLAY
+#define USE_BUTTON_EVENT
 
 ```
 
