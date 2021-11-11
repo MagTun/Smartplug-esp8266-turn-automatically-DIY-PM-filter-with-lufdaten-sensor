@@ -1,5 +1,10 @@
 # Turn automatically a PM filter with a smartplug (esp8266) based on the Lufdaten sensor data
 
+## In brief
+With this script, the plug will read the value from your Lufdaten sensor and will turn your filter on/off accroding to the threshold you set.    
+You can force your filter to be ON even if the PM values are low by pressing the button on your plug or the button "Force" in the UI.   
+TA huge thanks to @gemu2015 for the time spent for extracting the value from the json and creating the "force mode".  
+
 ## What you need 
 1) a smart plug with tasmota already installed (you can find a list of plug with plug preinstalled with tasmota [here](https://templates.blakadder.com/plug.html)) or any smart plug with an esp8266 or esp8285* (if you managed to "brick" the plug, go to the section "how to unbrick it?')
 I bought mine on Aliexpress at 16€:  [ATHOM preflashed TASMOTA Smart Plug 16A](https://fr.aliexpress.com/item/4001230982267.html?spm=a2g0s.9042311.0.0.40696c375Omr8M)     
@@ -34,25 +39,8 @@ You can use the `tasmota_custom.bin.gz` (based on 9.5.0.8) that is provided in t
 - Go to https://github.com/arendst/Tasmota , click on `Code` then `Download ZIP` and extract the zip (mine was extracted in the folder in the "Tasmota-development")
 - In VSCode, open the command palette and select `PlatformIO : Home`
 - On the PlatformIO home page, click on `Open project`, select your folder (eg: Tasmota-development). If VSCode aks if you trust the authors, click `Yes`
-- Then make a copy of the file `Tasmota-development\tasmota\user_config_override_sample.h` and rename the copy `user_config_override.h` 
-- Open `user_config_override_sample.h`  inside VSCode and just before the very last `#endif` paste this:
-
-```
-#ifndef USE_SCRIPT
-#define USE_SCRIPT
-#endif
-#ifdef USE_RULES
-#undef USE_RULES
-#endif
-
-#define USE_WEBSEND_RESPONSE
-#define HTTP_DEBUG
-#define USE_SCRIPT_WEB_DISPLAY
-#define USE_BUTTON_EVENT
-
-```
-
-- Make sure that at the bottom of the VSCode window, the path is set to "env:tasmota (Tasmota-development)" (otherwise click on it and select the correct env:  https://imgur.com/ISQzFdp )
+- Coppy the `user_config_override.h`provided here in `Tasmota-development\tasmota` 
+- In VSCode, make sure the the tasmota path is set to "env:tasmota (Tasmota-development)" (you can see it at the bottom of the windows, otherwise click on it and select the correct env:  https://imgur.com/ISQzFdp )
 - Open the command palette and select PlatformIO Built 
 
 ## Upload the build to the tasmota device
