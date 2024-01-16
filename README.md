@@ -30,7 +30,7 @@ With tasmota you can directly send a command and save/edit a script from a web i
 To do that just use need to open the IP of you tasmota device in your browser, to save a script on the Consoles>Edit script, and to go to Consoles>Console and write in the text input :  `script 1`   (and then press Enter)
 
 ## Backup everything (just in case)
-- If you have a tasmota plug already configured: connect your smartplug and go to Configuration> Backup Configuration (it will backup the most important pin configuration and probably the wifi 
+- If you have a tasmota plug already configured: connect your smartplug and go to Configuration> Backup Configuration (it will backup the most important pin configuration and probably the wifi)
 
 ## Building a custom tasmota firmware that supports scripting 
 You can use the `tasmota_custom.bin.gz` (based on 9.5.0.8) that is provided in this repository or you can build the same custom tasmota by following these step:
@@ -39,7 +39,7 @@ You can use the `tasmota_custom.bin.gz` (based on 9.5.0.8) that is provided in t
 - Go to https://github.com/arendst/Tasmota , click on `Code` then `Download ZIP` and extract the zip (mine was extracted in the folder in the "Tasmota-development")
 - In VSCode, open the command palette and select `PlatformIO : Home`
 - On the PlatformIO home page, click on `Open project`, select your folder (eg: Tasmota-development). If VSCode aks if you trust the authors, click `Yes`
-- Coppy the `user_config_override.h`provided here in `Tasmota-development\tasmota` 
+- Copy the `user_config_override.h`provided here in `Tasmota-development\tasmota` 
 - In VSCode, make sure the the tasmota path is set to "env:tasmota (Tasmota-development)" (you can see it at the bottom of the windows, otherwise click on it and select the correct env:  https://imgur.com/ISQzFdp )
 - Open the command palette and select PlatformIO Built 
 
@@ -56,15 +56,19 @@ In your browser open the IP of your smartplug and go to Firmware Upgrade then cl
 - in your browser open the IP of your smartplug
 - click on  consoles> edit script 
 - check the checkbox to enable script
-- paste the content of `script_for_webUI.script`: you need to modify the IP (cf http) with the one from your luftdaten sensor and if you want the thresholds
+- paste the content of `script_for_webUI.script`: you need to modify the IP (cf http) with the one from your luftdaten senso. You cam also modify the PM thresholds
 - Now fo to consoles>console and write : `script 1`   (and then press Enter)
 - Everything should be working now! 
 
 Don't forget to plug your PM filter on the smartplug!
 
 ## Advices :
-- if you have any problem (ex: during the build or a function that doesn't work properly), update tasmota : they regularly fix the bugs (two times in a week, I solved errors by  simply updating the tasmota to the latest)
-- always upload the .bin.gz not the .bin
+- If you have any problem (ex: during the build or a function that doesn't work properly), update tasmota : they regularly fix the bugs (two times in a week, I solved errors by simply updating the tasmota to the latest)
+- Always upload the .bin.gz not the .bin
+
+## New wifi credentials
+If your wifi credentials have changed (ex: new password, new modem...), you need to shortly press the button on your plug 4 (or 6) times quickly. This will activate the "wifi configuration mode". Then on your computer, open the Network settings (where all the wifi devices are listed) and select your tasmota smartplug. A new tab on your browser will be automatically opened and you can enter your new credentials.
+more info : https://tasmota.github.io/docs/FAQ/#wi-fi
 
 ## How to fix a bricked smart plug (by erasing it and reinstalling tasmota) or installing tasmota on a esp8266 plug
 
@@ -72,7 +76,7 @@ Don't forget to plug your PM filter on the smartplug!
 - best technique: https://www.youtube.com/watch?v=MjG07LQmJjQ   
 - interesting comments: https://www.youtube.com/watch?v=mG4bAAHluMU   
 
-■ How to erase /reinstall tasmota
+■ How to erase/reinstall tasmota
 - solder the wires (cf the picture below from https://codesandbolts.com/bsd29-smart-socket-esp8285)
 - install esptool via python `python -m pip install esptool`
 - download tasmota.bin on http://ota.tasmota.com/tasmota/release/
